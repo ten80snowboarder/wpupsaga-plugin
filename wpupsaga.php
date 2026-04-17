@@ -6,6 +6,7 @@
  * Version: 0.1.0
  * Author: Toby Dawes
  * Requires at least: 6.2
+ * Tested up to: 6.8
  * Requires PHP: 7.4
  * Text Domain: wpupsaga
  */

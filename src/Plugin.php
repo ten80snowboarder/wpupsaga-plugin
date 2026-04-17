@@ -18,8 +18,15 @@ final class Plugin
 
     public function boot(): void
     {
+        $apiClient = new ApiClient();
         $settingsPage = new SettingsPage();
         $settingsPage->register();
+
+        $pairingService = new PairingService($apiClient);
+        $pairingService->register();
+
+        $updateReporter = new UpdateReporter($apiClient);
+        $updateReporter->register();
 
         $this->registerUpdateChecker();
     }
@@ -29,9 +36,14 @@ final class Plugin
         $updateChecker = PucFactory::buildUpdateChecker(
             'https://github.com/ten80snowboarder/wpupsaga-plugin/',
             $this->pluginFile,
-            'wpupsaga-plugin'
+            'wpupsaga'
         );
 
         $updateChecker->setBranch('main');
+        $vcsApi = $updateChecker->getVcsApi();
+
+        if (is_object($vcsApi) && method_exists($vcsApi, 'enableReleaseAssets')) {
+            $vcsApi->enableReleaseAssets('/wpupsaga-[0-9A-Za-z._-]+\.zip($|[?&#])/i');
+        }
     }
 }
