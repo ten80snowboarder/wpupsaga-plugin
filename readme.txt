@@ -3,7 +3,7 @@ Contributors: ten80snowboarder
 Requires at least: 6.2
 Tested up to: 6.9.4
 Requires PHP: 8.3
-Stable tag: 0.1.7
+Stable tag: 0.1.8
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -23,6 +23,10 @@ WPUpSaga connects a WordPress site to the WPUpSaga app so you can pair the site,
 
 == Changelog ==
 
+
+= 0.1.8 =
+
+* Persist pre-update version snapshots during the WordPress upgrader run so `from_version` survives more update flows and is delivered more reliably.
 
 = 0.1.7 =
 

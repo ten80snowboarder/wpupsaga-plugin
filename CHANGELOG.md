@@ -4,6 +4,10 @@
 
 - No unreleased changes.
 
+## 0.1.8 - 2026-04-16
+
+- Persist captured pre-update plugin, theme, and core versions in a transient during the upgrader run so `from_version` survives WordPress update flow quirks more reliably.
+
 ## 0.1.7 - 2026-04-16
 
 - Capture pre-update plugin, theme, and core versions before WordPress overwrites them so delivered events populate `from_version` more reliably.

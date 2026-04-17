@@ -3,7 +3,7 @@
  * Plugin Name: WPUpSaga
  * Plugin URI: https://wpupsaga.tobydawes.com
  * Description: Connects a WordPress site to WPUpSaga for site pairing and update reporting.
- * Version: 0.1.7
+ * Version: 0.1.8
  * Author: Toby Dawes
  * Requires at least: 6.2
  * Tested up to: 6.9.4
@@ -18,7 +18,7 @@ if (! defined('ABSPATH')) {
 }
 
 define('WPUPSAGA_PLUGIN_FILE', __FILE__);
-define('WPUPSAGA_PLUGIN_VERSION', '0.1.7');
+define('WPUPSAGA_PLUGIN_VERSION', '0.1.8');
 define('WPUPSAGA_PLUGIN_BASENAME', \plugin_basename(__FILE__));
 define('WPUPSAGA_PLUGIN_DIR', \plugin_dir_path(__FILE__));
 define('WPUPSAGA_PLUGIN_URL', \plugin_dir_url(__FILE__));

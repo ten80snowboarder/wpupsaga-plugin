@@ -6,6 +6,8 @@ namespace WPUpSaga\Plugin;
 
 final class UpdateReporter
 {
+    private const PRE_UPDATE_VERSIONS_TRANSIENT = 'wpupsaga_pre_update_versions';
+
     /**
      * @var array<string, array<string, string>>
      */
@@ -36,6 +38,8 @@ final class UpdateReporter
             return $response;
         }
 
+        $captured = $this->loadPersistedPreUpdateVersions();
+
         switch ((string) ($hookExtra['type'] ?? '')) {
             case 'plugin':
                 foreach ($this->extractPluginFiles($hookExtra) as $pluginFile) {
@@ -43,6 +47,7 @@ final class UpdateReporter
 
                     if ($version !== null) {
                         $this->preUpdateVersions['plugin'][$pluginFile] = $version;
+                        $captured['plugin'][$pluginFile] = $version;
                     }
                 }
                 break;
@@ -53,6 +58,7 @@ final class UpdateReporter
 
                     if ($version !== null) {
                         $this->preUpdateVersions['theme'][$stylesheet] = $version;
+                        $captured['theme'][$stylesheet] = $version;
                     }
                 }
                 break;
@@ -62,9 +68,12 @@ final class UpdateReporter
 
                 if ($currentCoreVersion !== '') {
                     $this->preUpdateVersions['core']['wordpress'] = $currentCoreVersion;
+                    $captured['core']['wordpress'] = $currentCoreVersion;
                 }
                 break;
         }
+
+        $this->persistPreUpdateVersions($captured);
 
         return $response;
     }
@@ -76,6 +85,7 @@ final class UpdateReporter
     public function handleUpgraderProcessComplete(object $upgrader, array $hookExtra): void
     {
         $settings = Settings::all();
+        $this->preUpdateVersions = $this->mergePreUpdateVersions($this->loadPersistedPreUpdateVersions());
 
         if (!Settings::isConfigured() || empty($settings['paired'])) {
             return;
@@ -114,6 +124,8 @@ final class UpdateReporter
                 'last_delivery_at' => \gmdate('Y-m-d H:i:s'),
                 'last_delivery_error' => '',
             ]);
+
+            $this->clearPersistedPreUpdateVersions();
 
             return;
         }
@@ -352,5 +364,53 @@ final class UpdateReporter
         }
 
         return null;
+    }
+
+    /**
+     * @param array<string, array<string, string>> $captured
+     * @return array<string, array<string, string>>
+     */
+    private function mergePreUpdateVersions(array $captured): array
+    {
+        return [
+            'plugin' => array_merge($captured['plugin'] ?? [], $this->preUpdateVersions['plugin']),
+            'theme' => array_merge($captured['theme'] ?? [], $this->preUpdateVersions['theme']),
+            'core' => array_merge($captured['core'] ?? [], $this->preUpdateVersions['core']),
+        ];
+    }
+
+    /**
+     * @return array<string, array<string, string>>
+     */
+    private function loadPersistedPreUpdateVersions(): array
+    {
+        $stored = \get_site_transient(self::PRE_UPDATE_VERSIONS_TRANSIENT);
+
+        if (!is_array($stored)) {
+            return [
+                'plugin' => [],
+                'theme' => [],
+                'core' => [],
+            ];
+        }
+
+        return [
+            'plugin' => is_array($stored['plugin'] ?? null) ? $stored['plugin'] : [],
+            'theme' => is_array($stored['theme'] ?? null) ? $stored['theme'] : [],
+            'core' => is_array($stored['core'] ?? null) ? $stored['core'] : [],
+        ];
+    }
+
+    /**
+     * @param array<string, array<string, string>> $captured
+     */
+    private function persistPreUpdateVersions(array $captured): void
+    {
+        \set_site_transient(self::PRE_UPDATE_VERSIONS_TRANSIENT, $captured, HOUR_IN_SECONDS);
+    }
+
+    private function clearPersistedPreUpdateVersions(): void
+    {
+        \delete_site_transient(self::PRE_UPDATE_VERSIONS_TRANSIENT);
     }
 }
