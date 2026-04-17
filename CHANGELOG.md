@@ -4,6 +4,10 @@
 
 - No unreleased changes.
 
+## 0.1.9 - 2026-04-16
+
+- Fix pre-update version capture for bulk plugin updates where WordPress omits `action` and `type` from the `upgrader_pre_install` hook payload.
+
 ## 0.1.8 - 2026-04-16
 
 - Persist captured pre-update plugin, theme, and core versions in a transient during the upgrader run so `from_version` survives WordPress update flow quirks more reliably.

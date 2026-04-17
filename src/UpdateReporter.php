@@ -34,13 +34,15 @@ final class UpdateReporter
      */
     public function captureVersionsBeforeInstall(mixed $response, array $hookExtra): mixed
     {
-        if (($hookExtra['action'] ?? '') !== 'update') {
+        $updateType = $this->inferUpdateType($hookExtra);
+
+        if ($updateType === null) {
             return $response;
         }
 
         $captured = $this->loadPersistedPreUpdateVersions();
 
-        switch ((string) ($hookExtra['type'] ?? '')) {
+        switch ($updateType) {
             case 'plugin':
                 foreach ($this->extractPluginFiles($hookExtra) as $pluginFile) {
                     $version = $this->readInstalledPluginVersion($pluginFile);
@@ -412,5 +414,24 @@ final class UpdateReporter
     private function clearPersistedPreUpdateVersions(): void
     {
         \delete_site_transient(self::PRE_UPDATE_VERSIONS_TRANSIENT);
+    }
+
+    private function inferUpdateType(array $hookExtra): ?string
+    {
+        $explicitType = (string) ($hookExtra['type'] ?? '');
+
+        if ($explicitType !== '') {
+            return in_array($explicitType, ['plugin', 'theme', 'core', 'translation'], true) ? $explicitType : null;
+        }
+
+        if (!empty($hookExtra['plugin']) || !empty($hookExtra['plugins'])) {
+            return 'plugin';
+        }
+
+        if (!empty($hookExtra['theme']) || !empty($hookExtra['themes'])) {
+            return 'theme';
+        }
+
+        return null;
     }
 }
