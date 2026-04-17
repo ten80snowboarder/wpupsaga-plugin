@@ -5,8 +5,8 @@ Plugin used to connect a WordPress site to the WPUpSaga app.
 ## Development notes
 
 - Composer manages dependencies and autoloading.
-- `yahnis-elsts/plugin-update-checker` is included so GitHub releases can drive in-plugin updates.
-- Release assets should be named like `wpupsaga-1.2.3.zip` so Plugin Update Checker can pick them predictably.
+- `yahnis-elsts/plugin-update-checker` is included so the public GitHub repository can drive in-plugin updates.
+- The update checker follows the `main` branch version header instead of requiring GitHub Releases.
 - `readme.txt` and the plugin header are the source of truth for the released version.
 
 ## Packaging
@@ -15,7 +15,7 @@ The plugin is expected to ship with the `vendor/` directory included so update i
 
 ## Release workflow
 
-1. Run `php scripts/bump-version.php 0.1.1`.
+1. Run `php scripts/bump-version.php 0.1.3`.
 2. Review `readme.txt`, `CHANGELOG.md`, and `wpupsaga.php`.
-3. Run `bash scripts/package-release.sh 0.1.1`.
-4. Upload the generated ZIP from `dist/` to a GitHub Release.
+3. Run `bash scripts/package-release.sh 0.1.3`.
+4. Commit, tag, and push the updated plugin repo.

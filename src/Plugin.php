@@ -40,10 +40,5 @@ final class Plugin
         );
 
         $updateChecker->setBranch('main');
-        $vcsApi = $updateChecker->getVcsApi();
-
-        if (is_object($vcsApi) && method_exists($vcsApi, 'enableReleaseAssets')) {
-            $vcsApi->enableReleaseAssets('/wpupsaga-[0-9A-Za-z._-]+\.zip($|[?&#])/i');
-        }
     }
 }

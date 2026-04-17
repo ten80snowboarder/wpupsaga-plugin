@@ -3,7 +3,7 @@ Contributors: ten80snowboarder
 Requires at least: 6.2
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.1.2
+Stable tag: 0.1.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -27,6 +27,10 @@ WPUpSaga connects a WordPress site to the WPUpSaga app so you can pair the site,
 = 0.1.2 =
 
 * Persist pairing state correctly after a successful pair request.
+
+= 0.1.3 =
+
+* Stop relying on GitHub Releases for update checks. The updater now tracks the repository branch directly.
 
 = 0.1.1 =
 
