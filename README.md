@@ -25,4 +25,6 @@ Both ZIPs unpack into a top-level `wpupsaga/` directory so manual installs land 
 1. Run `php scripts/bump-version.php 0.1.4`.
 2. Review `readme.txt`, `CHANGELOG.md`, and `wpupsaga.php`.
 3. Run `bash scripts/package-release.sh 0.1.4`.
-4. Commit, tag, and push the updated plugin repo.
+4. Commit the updated plugin repo.
+5. Create and push the matching annotated tag: `git tag -a v0.1.4 -m "Release WPUpSaga plugin 0.1.4" && git push origin v0.1.4`.
+6. Push `main`.

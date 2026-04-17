@@ -42,3 +42,4 @@ file_put_contents($pluginFile, $pluginContents);
 file_put_contents($readmeFile, $readmeContents);
 
 fwrite(STDOUT, "Updated plugin header and readme to {$version}\n");
+fwrite(STDOUT, "Next: package the plugin, commit the changes, then create and push tag v{$version}.\n");
