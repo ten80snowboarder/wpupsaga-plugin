@@ -4,6 +4,10 @@
 
 - No unreleased changes.
 
+## 0.1.7 - 2026-04-16
+
+- Capture pre-update plugin, theme, and core versions before WordPress overwrites them so delivered events populate `from_version` more reliably.
+
 ## 0.1.6 - 2026-04-16
 
 - Render `Last paired at` and `Last delivery` in the WordPress site timezone instead of raw GMT values.
