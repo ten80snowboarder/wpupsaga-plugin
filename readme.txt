@@ -3,7 +3,7 @@ Contributors: ten80snowboarder
 Requires at least: 6.2
 Tested up to: 6.9.4
 Requires PHP: 8.3
-Stable tag: 0.1.5
+Stable tag: 0.1.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,6 +22,10 @@ WPUpSaga connects a WordPress site to the WPUpSaga app so you can pair the site,
 5. Save the settings, then click Pair Site.
 
 == Changelog ==
+
+= 0.1.6 =
+
+* Render pairing and delivery timestamps in the WordPress site timezone instead of raw GMT.
 
 = 0.1.5 =
 

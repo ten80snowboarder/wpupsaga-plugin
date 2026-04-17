@@ -4,6 +4,10 @@
 
 - No unreleased changes.
 
+## 0.1.6 - 2026-04-16
+
+- Render `Last paired at` and `Last delivery` in the WordPress site timezone instead of raw GMT values.
+
 ## 0.1.5 - 2026-04-16
 
 - Update the declared tested WordPress version to 6.9.4.

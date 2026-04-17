@@ -120,8 +120,8 @@ final class SettingsPage
         echo '<ul style="list-style:disc;padding-left:1.25rem">';
         echo '<li><strong>' . \esc_html__('Status', 'wpupsaga') . ':</strong> ' . \esc_html(!empty($settings['paired']) ? 'Paired' : 'Not paired') . '</li>';
         echo '<li><strong>' . \esc_html__('Remote state', 'wpupsaga') . ':</strong> ' . \esc_html((string) ($settings['site_status'] ?: 'pending')) . '</li>';
-        echo '<li><strong>' . \esc_html__('Last paired at', 'wpupsaga') . ':</strong> ' . \esc_html((string) ($settings['paired_at'] ?: 'Never')) . '</li>';
-        echo '<li><strong>' . \esc_html__('Last delivery', 'wpupsaga') . ':</strong> ' . \esc_html((string) ($settings['last_delivery_at'] ?: 'No deliveries yet')) . '</li>';
+        echo '<li><strong>' . \esc_html__('Last paired at', 'wpupsaga') . ':</strong> ' . \esc_html($this->formatSiteLocalTime($settings['paired_at'] ?? '', 'Never')) . '</li>';
+        echo '<li><strong>' . \esc_html__('Last delivery', 'wpupsaga') . ':</strong> ' . \esc_html($this->formatSiteLocalTime($settings['last_delivery_at'] ?? '', 'No deliveries yet')) . '</li>';
         echo '</ul>';
 
         if ((string) ($settings['last_error'] ?? '') !== '') {
@@ -183,5 +183,23 @@ final class SettingsPage
     private function getSettings(): array
     {
         return Settings::all();
+    }
+
+    private function formatSiteLocalTime(mixed $value, string $fallback): string
+    {
+        if (!is_string($value) || trim($value) === '') {
+            return $fallback;
+        }
+
+        $timestamp = strtotime($value . ' UTC');
+
+        if ($timestamp === false) {
+            return $fallback;
+        }
+
+        return \wp_date(
+            trim((string) \get_option('date_format', 'F j, Y')) . ' ' . trim((string) \get_option('time_format', 'g:i a')),
+            $timestamp
+        );
     }
 }
