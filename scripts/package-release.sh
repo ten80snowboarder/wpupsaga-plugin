@@ -46,6 +46,8 @@ rsync -a \
 (
   cd "$TEMP_DIR"
   zip -qr "$DIST_DIR/wpupsaga-$VERSION.zip" wpupsaga
+  zip -qr "$DIST_DIR/wpupsaga.zip" wpupsaga
 )
 
 echo "Created $DIST_DIR/wpupsaga-$VERSION.zip"
+echo "Created $DIST_DIR/wpupsaga.zip"

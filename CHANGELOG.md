@@ -17,7 +17,7 @@
 
 - Pairing flow against the WPUpSaga app.
 - Update delivery hooks for core, plugin, theme, and translation updates.
-- GitHub release asset packaging for predictable in-plugin updates.
+- Packaging now also creates a stable `wpupsaga.zip` that installs into `/wp-content/plugins/wpupsaga`.
 
 ## 0.1.0 - 2026-04-16
 

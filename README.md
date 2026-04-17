@@ -13,6 +13,13 @@ Plugin used to connect a WordPress site to the WPUpSaga app.
 
 The plugin is expected to ship with the `vendor/` directory included so update installs work without running Composer on the target WordPress site.
 
+Running `bash scripts/package-release.sh <version>` now produces:
+
+- `dist/wpupsaga-<version>.zip`
+- `dist/wpupsaga.zip`
+
+Both ZIPs unpack into a top-level `wpupsaga/` directory so manual installs land in `/wp-content/plugins/wpupsaga` instead of a GitHub source folder like `wpupsaga-plugin-main`.
+
 ## Release workflow
 
 1. Run `php scripts/bump-version.php 0.1.3`.
