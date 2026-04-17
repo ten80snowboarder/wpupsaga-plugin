@@ -40,5 +40,20 @@ final class Plugin
         );
 
         $updateChecker->setBranch('main');
+        $updateChecker->addFilter('pre_inject_info', [$this, 'normalizeInjectedTestedVersion']);
+        $updateChecker->addFilter('pre_inject_update', [$this, 'normalizeInjectedTestedVersion']);
+    }
+
+    /**
+     * PUC expands "6.8" to a synthetic value like "6.8.999".
+     * Strip that display hack back out before WordPress renders update metadata.
+     */
+    public function normalizeInjectedTestedVersion(object $item): object
+    {
+        if (isset($item->tested) && is_string($item->tested) && preg_match('/^(\d+\.\d+)\.999$/', $item->tested, $matches)) {
+            $item->tested = $matches[1];
+        }
+
+        return $item;
     }
 }

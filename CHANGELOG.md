@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+- No unreleased changes.
+
+## 0.1.4 - 2026-04-16
+
+- Add a stable `wpupsaga.zip` package that installs into `/wp-content/plugins/wpupsaga`.
+- Normalize Plugin Update Checker compatibility metadata so the UI does not show a synthetic `.999` WordPress version.
+
 ## 0.1.3 - 2026-04-16
 
 - Stop requiring GitHub Releases for plugin update checks.
@@ -12,12 +21,6 @@
 ## 0.1.1 - 2026-04-16
 
 - Stop disabling the Pair Site button in the settings UI. Validation remains server-side so pairing can still surface errors clearly.
-
-## Unreleased
-
-- Pairing flow against the WPUpSaga app.
-- Update delivery hooks for core, plugin, theme, and translation updates.
-- Packaging now also creates a stable `wpupsaga.zip` that installs into `/wp-content/plugins/wpupsaga`.
 
 ## 0.1.0 - 2026-04-16
 

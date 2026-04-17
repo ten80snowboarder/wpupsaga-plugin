@@ -22,7 +22,7 @@ Both ZIPs unpack into a top-level `wpupsaga/` directory so manual installs land 
 
 ## Release workflow
 
-1. Run `php scripts/bump-version.php 0.1.3`.
+1. Run `php scripts/bump-version.php 0.1.4`.
 2. Review `readme.txt`, `CHANGELOG.md`, and `wpupsaga.php`.
-3. Run `bash scripts/package-release.sh 0.1.3`.
+3. Run `bash scripts/package-release.sh 0.1.4`.
 4. Commit, tag, and push the updated plugin repo.
