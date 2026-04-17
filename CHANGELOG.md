@@ -4,6 +4,11 @@
 
 - No unreleased changes.
 
+## 0.1.5 - 2026-04-16
+
+- Update the declared tested WordPress version to 6.9.4.
+- Raise the minimum supported PHP version to 8.3.
+
 ## 0.1.4 - 2026-04-16
 
 - Add a stable `wpupsaga.zip` package that installs into `/wp-content/plugins/wpupsaga`.

@@ -1,9 +1,9 @@
 === WPUpSaga ===
 Contributors: ten80snowboarder
 Requires at least: 6.2
-Tested up to: 6.8
-Requires PHP: 7.4
-Stable tag: 0.1.4
+Tested up to: 6.9.4
+Requires PHP: 8.3
+Stable tag: 0.1.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,6 +22,11 @@ WPUpSaga connects a WordPress site to the WPUpSaga app so you can pair the site,
 5. Save the settings, then click Pair Site.
 
 == Changelog ==
+
+= 0.1.5 =
+
+* Update the declared tested WordPress version to 6.9.4.
+* Raise the minimum supported PHP version to 8.3.
 
 = 0.1.4 =
 

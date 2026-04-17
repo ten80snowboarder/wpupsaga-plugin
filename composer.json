@@ -3,7 +3,7 @@
   "description": "WordPress plugin used to connect a site to the WPUpSaga service.",
   "type": "wordpress-plugin",
   "require": {
-    "php": ">=7.4",
+    "php": ">=8.3",
     "yahnis-elsts/plugin-update-checker": "^5.6"
   },
   "autoload": {
