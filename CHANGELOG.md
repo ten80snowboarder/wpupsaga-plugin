@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.2 - 2026-04-16
+
+- Fix plugin settings sanitization so `paired`, `paired_at`, `site_status`, and delivery state persist after the pair action updates the option.
+
 ## 0.1.1 - 2026-04-16
 
 - Stop disabling the Pair Site button in the settings UI. Validation remains server-side so pairing can still surface errors clearly.

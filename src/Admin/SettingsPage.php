@@ -74,13 +74,17 @@ final class SettingsPage
 
     public function sanitizeSettings(array $input): array
     {
-        $current = Settings::all();
-
         return [
-            ...$current,
+            ...Settings::defaults(),
             'app_url' => \esc_url_raw((string) ($input['app_url'] ?? '')),
             'site_uuid' => \sanitize_text_field((string) ($input['site_uuid'] ?? '')),
             'api_key' => \sanitize_text_field((string) ($input['api_key'] ?? '')),
+            'paired' => !empty($input['paired']),
+            'paired_at' => \sanitize_text_field((string) ($input['paired_at'] ?? '')),
+            'site_status' => \sanitize_text_field((string) ($input['site_status'] ?? 'pending')),
+            'last_error' => \sanitize_text_field((string) ($input['last_error'] ?? '')),
+            'last_delivery_at' => \sanitize_text_field((string) ($input['last_delivery_at'] ?? '')),
+            'last_delivery_error' => \sanitize_text_field((string) ($input['last_delivery_error'] ?? '')),
         ];
     }
 
