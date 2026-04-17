@@ -128,10 +128,14 @@ final class SettingsPage
             echo '<p><strong>' . \esc_html__('Last delivery error', 'wpupsaga') . ':</strong> ' . \esc_html((string) $settings['last_delivery_error']) . '</p>';
         }
 
+        if (!Settings::isConfigured()) {
+            echo '<p>' . \esc_html__('Save the App URL, Site UUID, and API key first. Pairing validation happens after you click the button.', 'wpupsaga') . '</p>';
+        }
+
         echo '<form action="' . \esc_url(\admin_url('admin-post.php')) . '" method="post">';
         echo '<input type="hidden" name="action" value="wpupsaga_pair_site" />';
         \wp_nonce_field('wpupsaga_pair_site');
-        \submit_button(\__('Pair Site', 'wpupsaga'), 'secondary', 'submit', false, !Settings::isConfigured() ? ['disabled' => 'disabled'] : []);
+        \submit_button(\__('Pair Site', 'wpupsaga'), 'secondary', 'submit', false);
         echo '</form>';
         echo '</div>';
     }

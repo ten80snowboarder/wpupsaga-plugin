@@ -3,7 +3,7 @@ Contributors: ten80snowboarder
 Requires at least: 6.2
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.1.0
+Stable tag: 0.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,6 +22,10 @@ WPUpSaga connects a WordPress site to the WPUpSaga app so you can pair the site,
 5. Save the settings, then click Pair Site.
 
 == Changelog ==
+
+= 0.1.1 =
+
+* Keep the Pair Site button available after saving settings so pairing can be retried normally.
 
 = 0.1.0 =
 
